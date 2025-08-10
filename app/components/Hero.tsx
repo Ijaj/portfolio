@@ -1,23 +1,14 @@
-
-import React, {  } from 'react';
-import {
-  Typography,
-  Button,
-  Box,
-  Container,
-  Grid,
-  Avatar,
-  IconButton,
-  useTheme,
-  Fade
-} from '@mui/material';
+import React from 'react';
+import { Typography, Button, Box, Container, Grid, Avatar, IconButton, Fade, useTheme } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
 
 import '@mui/material/styles';
 
-const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; }) => {
-  const muiTheme = useTheme();
+import { useThemeManager } from '@/app/providers/ThemeManagerProvider';
 
+const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void }) => {
+  const { mode } = useThemeManager();
+  const theme = useTheme();
   return (
     <Box
       id="home"
@@ -26,7 +17,6 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; 
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        background: muiTheme.palette.gradient.primary,
         color: 'common.white',
         position: 'relative',
         overflow: 'hidden'
@@ -48,53 +38,32 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; 
                     border: '4px solid rgba(255, 255, 255, 0.3)'
                   }}
                 />
-                <Typography variant="h1" component="h1" gutterBottom>
+                <Typography variant="h1" component="h1" gutterBottom color="text.primary">
                   Hello, I&apos;m{' '}
                   <Typography
                     component="span"
                     variant="h1"
                     sx={{
-                      background: muiTheme.palette.gradient.accent,
                       WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
                       fontWeight: 'bold'
                     }}
                   >
                     Ejaj Ahamed Bhuiyan
                   </Typography>
                 </Typography>
-                <Typography variant="h5" component="p" paragraph sx={{ mb: 4, opacity: 0.9 }}>
-                  Full-stack developer passionate about creating beautiful, functional web applications
-                  that solve real-world problems.
+                <Typography variant="h5" component="p" sx={{ mb: 4, opacity: 0.9 }} color="text.secondary">
+                  Full-Stack Web Developer | React & Node.js Specialist | Real-Time Systems Enthusiast{' '}
+                </Typography>
+                <Typography variant="h6" component="p" sx={{ mb: 4, opacity: 0.9 }} color="text.secondary">
+                  Hi, I am a passionate full-stack developer with 3+ years of experience building scalable, efficient, and innovative
+                  solutions. Skilled in React, Node.js, and real-time communication systems, I thrive in dynamic environments where
+                  technology meets creativity. Currently expanding my expertise into DevOps and .NET.
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    onClick={() => onNavigate('projects')}
-                    sx={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                      color: 'common.white',
-                      '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.3)'
-                      }
-                    }}
-                  >
+                  <Button variant="contained" size="large" onClick={() => onNavigate('projects')}>
                     View My Work
                   </Button>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    onClick={() => onNavigate('contact')}
-                    sx={{
-                      borderColor: 'common.white',
-                      color: 'common.white',
-                      '&:hover': {
-                        borderColor: 'common.white',
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                      }
-                    }}
-                  >
+                  <Button variant="outlined" size="large" onClick={() => onNavigate('contact')}>
                     Get In Touch
                   </Button>
                 </Box>
@@ -107,13 +76,11 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; 
                     width: 300,
                     height: 300,
                     borderRadius: '50%',
-                    background: 'rgba(255, 255, 255, 0.1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     mx: 'auto',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                    background: `linear-gradient(135deg, ${mode === 'light' ? theme.palette.secondary.main : theme.palette.success.main} 0%, ${mode === 'light' ? theme.palette.info.main : theme.palette.warning.main} 100%)`
                   }}
                   role="img"
                   aria-label="Developer illustration"
@@ -127,7 +94,7 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; 
           </Grid>
         </Fade>
       </Container>
-      
+
       <Box
         sx={{
           position: 'absolute',
@@ -137,11 +104,7 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void; 
           animation: 'bounce 2s infinite'
         }}
       >
-        <IconButton
-          onClick={() => onNavigate('about')}
-          sx={{ color: 'common.white' }}
-          aria-label="Scroll to about section"
-        >
+        <IconButton onClick={() => onNavigate('about')} sx={{ color: 'secondary.main' }} aria-label="Scroll to about section">
           <KeyboardArrowDown fontSize="large" />
         </IconButton>
       </Box>

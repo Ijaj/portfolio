@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import ThemeProvider from './ThemeProvider';
+import { ThemeManagerProvider } from './providers/ThemeManagerProvider';
 
 export const metadata: Metadata = {
   title: 'Ejaj Ahamed - Full Stack Developer',
@@ -13,42 +13,6 @@ export const metadata: Metadata = {
   },
 };
 
-declare module '@mui/material/styles' {
-  interface Palette {
-    gradient: {
-      primary: string;
-      accent: string;
-      secondary: string;
-      card: string;
-    };
-    navbar: {
-      background: string;
-      border: string;
-      text: string;
-      textGradient: string;
-    };
-    footer: {
-      border: string;
-    }
-  }
-  interface PaletteOptions {
-    gradient?: {
-      primary?: string;
-      accent?: string;
-      secondary?: string;
-    };
-    navbar?: {
-      background?: string;
-      border?: string;
-      text?: string;
-      textGradient?: string;
-    };
-    footer: {
-      border?: string;
-    }
-  }
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -57,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
+        <ThemeManagerProvider>
           {children}
-        </ThemeProvider>
+        </ThemeManagerProvider>
       </body>
     </html>
   );

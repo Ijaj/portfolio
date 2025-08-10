@@ -1,18 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  useTheme,
-  Fade,
-  Grow,
-  IconButton,
-  Paper,
-} from '@mui/material';
+import { Box, Container, Typography, Grid, Card, useTheme, Fade, Grow, IconButton, Paper } from '@mui/material';
 import GithubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
@@ -60,13 +49,19 @@ const AboutSection = () => {
                 Passionate Developer & Problem Solver
               </Typography>
               <Typography variant="body1" paragraph>
-                With over 5 years of experience in web development, I specialize in creating 
-                modern, scalable applications using cutting-edge technologies. I&apos;m passionate 
-                about writing clean, efficient code and delivering exceptional user experiences.
+                I`m a full-stack web developer with over 3 years of professional experience in delivering robust and high-performance web
+                applications. I`ve worked extensively with JavaScript, TypeScript, React, Node.js, and .NET, creating everything from
+                dynamic admin dashboards to real-time communication systems powered by WebSockets and MQTT.{' '}
               </Typography>
               <Typography variant="body1" paragraph>
-                When I&apos;m not coding, you can find me contributing to open-source projects, 
-                learning new technologies, or mentoring aspiring developers in my local community.
+                My journey began with a strong academic foundation in Computer Science & Engineering, followed by years of self-driven
+                learning in modern frameworks, backend systems, and DevOps. I`ve mastered working in Linux environments, optimizing
+                performance, and solving complex problems with clean, maintainable code.
+              </Typography>
+              <Typography variant="body1" paragraph>
+                When I`m not building software, I explore AI-driven innovations, game development in Godot.Net, and continuously experiment
+                with new technologies. I value scalability, efficiency, and user-focused design, and I aim to bring those principles into
+                every project I work on.
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, mt: 3 }}>
                 <IconButton color="primary" aria-label="GitHub profile">
@@ -82,7 +77,7 @@ const AboutSection = () => {
             </Card>
           </Grow>
         </Grid>
-        
+
         <Grid size={{ xs: 12, md: 6 }}>
           <Grid container spacing={3}>
             {stats.map((stat, index) => (

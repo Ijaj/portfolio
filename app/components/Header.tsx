@@ -1,30 +1,34 @@
 'use client';
 import '@mui/material/styles';
-import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemText,
-  useMediaQuery,
-  useTheme,
-  Slide,
-} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Typography, Box, IconButton, Drawer, List, ListItemButton, ListItemText, useMediaQuery, useTheme, Slide } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import SettingsIcon from '@mui/icons-material/Settings';
 
-const Header = ({ activeSection, onNavigate }: { activeSection: string; onNavigate: (sectionId: string) => void;}) => {
+const Header = ({ activeSection, onNavigate }: { activeSection: string; onNavigate: (sectionId: string) => void }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [settingsDrawerOpen, setSettingsDrawerOpen] = useState(false);
-  const muiTheme = useTheme();
-  const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
+  const [mounted, setMounted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(scrollY);
+  }, [scrollY]);
 
   const menuItems = [
     { id: 'home', label: 'Home' },
@@ -39,84 +43,57 @@ const Header = ({ activeSection, onNavigate }: { activeSection: string; onNaviga
     setMobileMenuOpen(false);
   };
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <>
-      <Drawer open={settingsDrawerOpen} onClose={() => setSettingsDrawerOpen(false)}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography variant="h6">Settings</Typography>
-            <IconButton onClick={() => setSettingsDrawerOpen(false)} aria-label="Close settings">
-              <CloseIcon />
-            </IconButton>
-          </Box>
-        </Box>
-        something
-      </Drawer>
-      <Slide direction="down" in={true} timeout={1000}>
-        <AppBar 
-          position="fixed" 
-          elevation={0}
-          sx={{
-            background: 'navbar.background',
-            backdropFilter: 'blur(10px)',
-            borderBottom: `1px solid ${muiTheme.palette.navbar.border}`
-          }}
-        >
-          <Toolbar>
+    <Box id="header">
+      <Slide direction="right" in={true} timeout={1000}>
+        <Box sx={{ p: 4, display: 'flex', flexDirection: 'column', width: '100%', borderRight: '1px solid', borderColor: 'divider' }}>
+          {!isMobile && (
             <Typography
-              variant="h5"
+              variant="h4"
               component="div"
               sx={{
                 flexGrow: 1,
-                fontWeight: 'bold',
-                background: muiTheme.palette.navbar.textGradient,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                fontWeight: 'bold'
               }}
             >
-              Ejaj Ahamed Bhuiyan
+              Ejaj Ahamed
             </Typography>
-            
-            {!isMobile ? (
-              <Box sx={{ display: 'flex', gap: 2 }}>
-                {menuItems.map((item) => (
-                  <Button
-                    key={item.id}
-                    onClick={() => handleNavigation(item.id)}
-                    sx={{
-                      color: 'navbar.text',
-                      fontWeight: activeSection === item.id ? 'bold' : 'normal',
-                      '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                      }
-                    }}
+          )}
+          {!isMobile ? (
+            <List>
+              {menuItems.map((item) => (
+                <ListItemButton
+                  key={item.id}
+                  onClick={() => handleNavigation(item.id)}
+                  selected={activeSection === item.id}
+                  color={activeSection === item.id ? 'success' : 'primary'}
+                  sx={{
+                    transition: 'all 0.3s ease-in-out',
+                    fontWeight: activeSection === item.id ? 'bold' : 'normal'
+                  }}
+                >
+                  <Typography
+                    color={activeSection === item.id ? 'text.primary' : 'text.main'}
+                    fontWeight={activeSection === item.id ? 'bold' : 'normal'}
                   >
                     {item.label}
-                  </Button>
-                ))}
-                <IconButton onClick={() => setSettingsDrawerOpen(true)} aria-label="Open settings">
-                  <SettingsIcon />
-                </IconButton>
-              </Box>
-            ) : (
-              <IconButton
-                edge="end"
-                onClick={() => setMobileMenuOpen(true)}
-                sx={{ color: 'navbar.text' }}
-                aria-label="Open navigation menu"
-              >
-                <MenuIcon />
-              </IconButton>
-            )}
-          </Toolbar>
-        </AppBar>
+                  </Typography>
+                </ListItemButton>
+              ))}
+            </List>
+          ) : (
+            <IconButton edge="end" onClick={() => setMobileMenuOpen(true)} sx={{ color: 'navbar.text' }} aria-label="Open navigation menu">
+              <MenuIcon />
+            </IconButton>
+          )}
+        </Box>
       </Slide>
 
-      <Drawer
-        anchor="right"
-        open={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      >
+      <Drawer anchor="left" open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
         <Box sx={{ width: 250, pt: 2 }}>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }}>
             <IconButton onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
@@ -132,7 +109,8 @@ const Header = ({ activeSection, onNavigate }: { activeSection: string; onNaviga
           </List>
         </Box>
       </Drawer>
-    </>
+    </Box>
   );
 };
+
 export default Header;

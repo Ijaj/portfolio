@@ -24,7 +24,6 @@ const Footer = () => {
             gutterBottom
             sx={{
               fontWeight: 'bold',
-              background: muiTheme.palette.gradient.secondary,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}
@@ -54,7 +53,7 @@ const Footer = () => {
               <EmailIcon />
             </IconButton>
           </Box>
-          <Box sx={{ borderTop: `1px solid ${muiTheme.palette.footer.border}`, pt: 4 }}>
+          <Box sx={{ pt: 4 }}>
             <Typography variant="body2" color="footer.textSecondary">
               © 2025 Ejaj Ahamed Bhuiyan. All rights reserved.
             </Typography>

@@ -1,8 +1,6 @@
-import { Box, Container, Typography, Grid, Fade, useTheme, Grow, Paper, LinearProgress } from "@mui/material";
+import { Box, Container, Typography, Grid, Fade, useTheme, Grow, Paper, LinearProgress } from '@mui/material';
 
 const SkillsSection = () => {
-  const muiTheme = useTheme();
-  
   const skills = [
     { name: 'React/Next.js', level: 90 },
     { name: 'JavaScript/TypeScript', level: 85 },
@@ -13,7 +11,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <Box component="section" sx={{ backgroundColor: 'grey.50', py: 10 }}>
+    <Box component="section" sx={{ py: 10 }}>
       <Container maxWidth="lg" id="skills">
         <Fade in={true} timeout={1000}>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
@@ -30,7 +28,7 @@ const SkillsSection = () => {
             />
           </Box>
         </Fade>
-        
+
         <Grid container spacing={4}>
           {skills.map((skill, index) => (
             <Grid size={{ xs: 12, md: 6 }} key={skill.name}>
@@ -50,9 +48,7 @@ const SkillsSection = () => {
                     aria-label={`${skill.name} skill level: ${skill.level}%`}
                     sx={{
                       backgroundColor: 'grey.200',
-                      '& .MuiLinearProgress-bar': {
-                        background: muiTheme.palette.gradient.secondary
-                      }
+                      '& .MuiLinearProgress-bar': {}
                     }}
                   />
                 </Paper>

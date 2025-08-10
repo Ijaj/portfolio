@@ -1,25 +1,12 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Button,
-  useTheme,
-  Fade,
-  Grow,
-  TextField,
-  Paper,
-} from '@mui/material';
+import { Box, Container, Typography, Grid, Button, Fade, Grow, TextField, Paper } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const ContactSection = () => {
-  const muiTheme = useTheme();
-
   return (
-    <Box component="section" sx={{ backgroundColor: 'grey.50', py: 10 }}>
+    <Box component="section" sx={{ py: 10 }}>
       <Container maxWidth="lg" id="contact">
         <Fade in={true} timeout={1000}>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
@@ -36,12 +23,12 @@ const ContactSection = () => {
               }}
             />
             <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
-              I&apos;m always interested in hearing about new opportunities and exciting projects.
-              Let&apos;s work together to bring your ideas to life!
+              I&apos;m always interested in hearing about new opportunities and exciting projects. Let&apos;s work together to bring your
+              ideas to life!
             </Typography>
           </Box>
         </Fade>
-        
+
         <Grid container spacing={6}>
           <Grid size={{ xs: 12, md: 6 }}>
             <Grow in={true} timeout={1500}>
@@ -61,7 +48,7 @@ const ContactSection = () => {
                       </Typography>
                     </Box>
                   </Box>
-                  
+
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <PhoneIcon color="primary" />
                     <Box>
@@ -73,7 +60,7 @@ const ContactSection = () => {
                       </Typography>
                     </Box>
                   </Box>
-                  
+
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <LocationOnIcon color="primary" />
                     <Box>
@@ -89,26 +76,13 @@ const ContactSection = () => {
               </Paper>
             </Grow>
           </Grid>
-          
+
           <Grid size={{ xs: 12, md: 6 }}>
             <Grow in={true} timeout={1800}>
               <Paper elevation={3} sx={{ p: 4 }}>
                 <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                  <TextField
-                    fullWidth
-                    label="Name"
-                    variant="outlined"
-                    placeholder="Your Name"
-                    required
-                  />
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    variant="outlined"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    required
-                  />
+                  <TextField fullWidth label="Name" variant="outlined" placeholder="Your Name" required />
+                  <TextField fullWidth label="Email" variant="outlined" type="email" placeholder="your.email@example.com" required />
                   <TextField
                     fullWidth
                     label="Message"
@@ -118,17 +92,7 @@ const ContactSection = () => {
                     placeholder="Tell me about your project..."
                     required
                   />
-                  <Button
-                    variant="contained"
-                    size="large"
-                    onClick={() => alert('Thank you for your message! I\'ll get back to you soon.')}
-                    sx={{
-                      background: muiTheme.palette.gradient.secondary,
-                      '&:hover': {
-                        background: muiTheme.palette.gradient.card
-                      }
-                    }}
-                  >
+                  <Button variant="contained" size="large" onClick={() => alert("Thank you for your message! I'll get back to you soon.")}>
                     Send Message
                   </Button>
                 </Box>

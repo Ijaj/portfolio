@@ -1,11 +1,10 @@
-import { Typography, ToggleButtonGroup, ToggleButton, Paper } from '@mui/material';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { Typography, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+
 import { useThemeManager } from '../providers/ThemeManagerProvider';
 
-export default function ThemeModeSwitcher() {
-  const { mode, setMode } = useThemeManager();
+export default function ThemeSwitcherUI() {
+  const { themeName, setThemeName, allThemes } = useThemeManager();
+
   return (
     <Paper
       elevation={3}
@@ -17,7 +16,7 @@ export default function ThemeModeSwitcher() {
         p: 3,
         borderRadius: 4,
         backdropFilter: 'blur(12px)',
-        maxWidth: 320,
+        width: '100%',
         mx: 'auto'
       }}
     >
@@ -31,7 +30,24 @@ export default function ThemeModeSwitcher() {
         Choose Theme
       </Typography>
 
-      <ToggleButtonGroup
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Theme</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={themeName}
+          label="Theme"
+          onChange={(event) => setThemeName(event.target.value as string)}
+        >
+          {allThemes.map((theme: string) => (
+            <MenuItem key={theme} value={theme}>
+              {theme}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      {/* <ToggleButtonGroup
         exclusive
         sx={{
           borderRadius: 0,
@@ -53,19 +69,12 @@ export default function ThemeModeSwitcher() {
           }
         }}
       >
-        <ToggleButton onClick={() => setMode('light')} selected={mode === 'light'} value="light">
-          <LightModeIcon sx={{ mr: 1 }} />
-          Light
-        </ToggleButton>
-        <ToggleButton onClick={() => setMode('system')} selected={mode === 'system'} value="system">
-          <DarkModeIcon sx={{ mr: 1 }} />
-          System
-        </ToggleButton>
-        <ToggleButton onClick={() => setMode('dark')} selected={mode === 'dark'} value="dark">
-          <AutoAwesomeIcon sx={{ mr: 1 }} />
-          Dark
-        </ToggleButton>
-      </ToggleButtonGroup>
+        {allThemes.map((name: string) => (
+          <ToggleButton key={name} onClick={() => setThemeName(name)} selected={themeName === name} value={name}>
+            {name}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup> */}
     </Paper>
   );
 }
