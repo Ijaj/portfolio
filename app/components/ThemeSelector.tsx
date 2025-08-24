@@ -27,7 +27,7 @@ export default function ThemeSwitcherUI() {
           letterSpacing: '0.5px'
         }}
       >
-        Choose Theme
+        Theme
       </Typography>
 
       <FormControl fullWidth>

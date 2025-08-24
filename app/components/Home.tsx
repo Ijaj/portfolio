@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Box, Drawer, Fab, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
 import SettingsMenu from './SettingsMenu';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 import Header from './Header';
 import HeroSection from './Hero';
@@ -13,13 +12,13 @@ import ContactSection from './ContactSection';
 import Footer from './Footer';
 import ScrollToTopFab from './ScrollToTop';
 import { sections } from '../utils/constants';
+import EducationSection from './EducationSection';
 
 export default function Home() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [activeSection, setActiveSection] = useState('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [settingsDrawerOpen, setSettingsDrawerOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +82,7 @@ export default function Home() {
           <Box component="main">
             <HeroSection onNavigate={scrollToSection} />
             <AboutSection />
+            <EducationSection />
             <SkillsSection />
             <ProjectsSection />
             <ContactSection />
@@ -93,13 +93,7 @@ export default function Home() {
 
       <ScrollToTopFab show={showScrollTop} onClick={scrollToTop} />
 
-      <Drawer anchor="right" open={settingsDrawerOpen} onClose={() => setSettingsDrawerOpen(false)} disableScrollLock>
-        <SettingsMenu onClose={() => setSettingsDrawerOpen(false)} />
-      </Drawer>
-
-      <Fab sx={{ top: 16, right: 16, position: 'fixed' }} onClick={() => setSettingsDrawerOpen(true)} aria-label="Open settings">
-        <SettingsIcon />
-      </Fab>
+      <SettingsMenu />
 
       <style jsx>{`
         @keyframes bounce {

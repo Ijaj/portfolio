@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Box, Container, Grid, Avatar, IconButton, Fade, useTheme } from '@mui/material';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import { KeyboardArrowDown, Code, Build } from '@mui/icons-material';
 
 import '@mui/material/styles';
 
@@ -86,6 +86,7 @@ const HeroSection = ({ onNavigate }: { onNavigate: (sectionId: string) => void }
                   aria-label="Developer illustration"
                 >
                   <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                    {/* <Code fontSize="large" color="error" /> <Build fontSize="large" /> */}
                     💻 🚀
                   </Typography>
                 </Box>

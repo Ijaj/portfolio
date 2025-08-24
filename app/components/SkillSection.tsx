@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Grid, Fade, useTheme, Grow, Paper, LinearProgress } from '@mui/material';
+import { Box, Container, Typography, Grid, Fade, Grow, Paper, LinearProgress } from '@mui/material';
 
 const SkillsSection = () => {
   const skills = [

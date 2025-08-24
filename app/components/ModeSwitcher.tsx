@@ -28,7 +28,7 @@ export default function ThemeModeSwitcher() {
           letterSpacing: '0.5px'
         }}
       >
-        Choose Theme
+        Theme Mode
       </Typography>
 
       <ToggleButtonGroup

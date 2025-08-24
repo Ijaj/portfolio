@@ -201,7 +201,7 @@ const themeVariants = [
       success: { main: '#43a047', light: '#76d275', dark: '#00701a', contrastText: '#fff' },
       info: { main: '#29b6f6', light: '#73e8ff', dark: '#0086c3', contrastText: '#fff' },
       warning: { main: '#ffb300', light: '#ffe54c', dark: '#c68400', contrastText: '#000' },
-      error: { main: '#d50000', light: '#ff5131', dark: '#9b0000', contrastText: '#fff' }
+      error: { main: '#ff0000ff', light: '#ff5131', dark: '#9b0000', contrastText: '#fff' }
     },
     dark: {
       primary: { main: '#ff6090', light: '#ff94c2', dark: '#e91e63', contrastText: '#000' },
